@@ -19,11 +19,11 @@ Blog.init(
       type: Datatypes.TEXT,
       allowNull: false
     },
-    user_name: {
+    username: {
       type: DataTypes.STRING,
       references: {
         model: 'user',
-        key: 'name'
+        key: 'username'
       }
     },
     date_created: {
