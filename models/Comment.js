@@ -11,11 +11,11 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true
     },
-    user_name : {
+    username : {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'name'
+        key: 'username'
       }
     },
     date_created: {
