@@ -12,10 +12,10 @@ const seedAll = async () => {
     console.log('\n----- USERS SYNCED -----\n');
 
     await seedBlog();
-    console.log('\n----- CATEGORIES SYNCED -----\n');
+    console.log('\n----- BLOGS SYNCED -----\n');
     
     await seedComment();
-    console.log('\n----- INSTRUMENTS SYNCED -----\n');
+    console.log('\n----- COMMENTS SYNCED -----\n');
 
     process.exit(0);
 };
