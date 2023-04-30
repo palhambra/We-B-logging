@@ -16,7 +16,7 @@ Blog.init(
       allowNull: false
     },
     content: {
-      type: Datatypes.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     username: {
@@ -28,7 +28,8 @@ Blog.init(
     },
     date_created: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     } 
   },
   {
