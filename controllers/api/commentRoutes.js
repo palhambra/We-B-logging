@@ -11,7 +11,7 @@ router.post('/', withAuth, async (req, res) => {
     username: req.session.username,
     date_created: new Date()
   });
-  res.redirect('/');
+  res.redirect(`/blog/${req.body.blog_id}`);
   // res.status(200).json(newBlog);
 } catch (err) {
   res.status(500).json(err)
