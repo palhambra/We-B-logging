@@ -61,6 +61,7 @@ router.get('/dashboard', async (req, res) => {
   if (req.session.logged_in) {
   try {
     const blogData = await Blog.findAll({
+      
       where: {
         username: req.session.username
       }

@@ -1,28 +1,36 @@
 <form style="margin-bottom: 50px;" action="/api/blogs" method="POST">
-    <label>Title:</label>
-    <input style="width:100%;" type="text" name="title" id="title" required>
-    
-    <label>Content:</label>
-    <textarea class="form-input" rows="4" style="width:100%" name="content" id="content" required></textarea>
-    <button style="margin:15px; float:right;" type="submit">Post New Blog</button>
+  <label>Title:</label>
+  <input style="width:100%;" type="text" name="title" id="title" required>
+
+  <label>Content:</label>
+  <textarea class="form-input" rows="4" style="width:100%" name="content" id="content" required></textarea>
+  <button style="margin:15px; float:right;" type="submit">Post New Blog</button>
 </form>
 
 
 
-{{#if blogs}}
+{{#if blogs.length}}
+<div class="blog-list">
+  <h3>Your Blogs:</h3>
   {{#each blogs as |blog| }}
-    
-      <div class="row align-center mb-5">
-        <div class="col-md-12">
-          <a href="/blog/{{id}}">
-          <h2>{{title}}</h2>
-          </a>
-          <p>By: {{username}} on {{format_date date_created}}</p>
-          <p>{{content}}</p>
-        </div>
-      </div>
-    
+
+  <div class="row align-center mb-5">
+    <div class="col-md-12">
+      <a href="/blog/{{id}}">
+        <h2>{{title}}</h2>
+      </a>
+      <p>By: {{username}} on {{format_date date_created}}</p>
+      <p>{{content}}</p>
+      <button type="submit" class="delete-btn" data-id="{{blog.id}}">Delete</button>
+    </div>
+  </div>
+
   {{/each}}
+
+  
+</div>
 {{else}}
-  <p>You have not created any blogs yet.</p>
+<p>You have not created any blogs yet.</p>
 {{/if}}
+
+<script src="/js/deleteBlog.js"></script>

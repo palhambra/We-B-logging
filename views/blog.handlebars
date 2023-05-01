@@ -7,20 +7,30 @@
   <p class="by">Posted by {{blogs.username}} on {{format_date blogs.date_created}}</p>
 </section>
 
-{{#each blogs.comments as |comments| }}
-<p class="content">{{comments.content}}</p>
 
-<p class="by">Posted by {{comments.username}} on {{format_date comments.date_created}}</p>
-{{/each}}
+{{#if blogs.comments.length}}
+<div class="comment-list">
+  <h3>Comments:</h3>
+  {{#each blogs.comments as |comments| }}
+  <div class="comments">
+    <p class="content">{{comments.content}}</p>
 
+    <p class="by">Posted by {{comments.username}} on {{format_date comments.date_created}}</p>
+    <button type="submit" class="delete-btn" data-id="{{comments.id}}">Delete</button>
+    </div>
+  {{/each}}
+</div>
+{{/if}}
+
+<div>
 <form style="margin-bottom: 50px;" action="/api/comments" method="POST">
-    
-    <input type="hidden" name="blog_id" value="{{ blogs.id }}">
-    <label>Content:</label>
-    <textarea class="form-input" rows="4" style="width:100%" name="content" id="content" required></textarea>
-    <button style="margin:15px; float:right;" type="submit">Post Comment</button>
+
+  <input type="hidden" name="blog_id" value="{{ blogs.id }}">
+  <label>Content:</label>
+  <textarea class="form-input" rows="4" style="width:100%" name="content" id="content" required></textarea>
+  <button style="margin:15px; float:right;" type="submit">Post Comment</button>
+
 </form>
+</div>
 
-
-
-
+<script src="/js/deleteComment.js"></script>

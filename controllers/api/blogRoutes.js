@@ -11,8 +11,8 @@ router.post('/', withAuth, async (req, res) => {
     username: req.session.username,
     date_created: new Date()
   });
-  // res.redirect('/dashboard');
-  res.status(200).json(newBlog);
+  res.redirect('/dashboard');
+  // res.status(200).json(newBlog);
 } catch (err) {
   res.status(500).json(err)
 }
@@ -24,7 +24,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     const blogData = await Blog.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id
+        username: req.session.username
       }
     })
     if (!blogData) {

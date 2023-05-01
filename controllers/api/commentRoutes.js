@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 // Post comment
 router.post('/', withAuth, async (req, res) => {
   try {
-  const newComment = await Comment.create({
+  const commentData = await Comment.create({
     blog_id: req.body.blog_id,
     content: req.body.content,
     username: req.session.username,
@@ -18,23 +18,35 @@ router.post('/', withAuth, async (req, res) => {
 }
 });
 
-// Delete blog
+// Delete comment
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await Blog.destroy({
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id
+        username: req.session.username
       }
     })
-    if (!blogData) {
-      res.status(404).json({ message: 'No blog found!'});
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found!'});
       return
     }
-    res.status(200).json(blogData);
+    
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err)
   }
 });
 
+// Get all comments
+router.get('/', async (req, res) => {
+  try {
+    const commentData = await Comment.findAll();
+  
+    res.status(200).json(commentData);
+  } catch (err) {
+    res.status(500).json(err)
+  }
+  
+  });
 module.exports = router;
