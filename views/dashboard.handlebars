@@ -1,4 +1,4 @@
-<form style="margin-bottom: 50px;" action="/dashboard" method="POST">
+<form style="margin-bottom: 50px;" action="/api/blogs" method="POST">
     <label>Title:</label>
     <input style="width:100%;" type="text" name="title" id="title" required>
     <br>
@@ -11,15 +11,17 @@
 
 {{#if blogs}}
   {{#each blogs as |blog| }}
-    <a href="/blog/{{id}}">
+    
       <div class="row align-center mb-5">
         <div class="col-md-12">
+          <a href="/blog/{{id}}">
           <h2>{{title}}</h2>
+          </a>
           <p>By: {{username}} on {{format_date date_created}}</p>
           <p>{{content}}</p>
         </div>
       </div>
-    </a>
+    
   {{/each}}
 {{else}}
   <p>You have not created any blogs yet.</p>
