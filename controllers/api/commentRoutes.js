@@ -2,17 +2,17 @@ const router = require('express').Router();
 const { Blog, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Create new blog
+// Post comment
 router.post('/', withAuth, async (req, res) => {
   try {
-  const newBlog = await Blog.create({
-    title: req.body.title,
+  const newComment = await Comment.create({
+    blog_id: req.body.blog_id,
     content: req.body.content,
     username: req.session.username,
     date_created: new Date()
   });
-  // res.redirect('/dashboard');
-  res.status(200).json(newBlog);
+  res.redirect('/');
+  // res.status(200).json(newBlog);
 } catch (err) {
   res.status(500).json(err)
 }
@@ -37,19 +37,4 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
-// Get all blogs
-router.get('/', async (req, res) => {
-  try {
-    const blogData = await Blog.findAll(
-      {
-        include: [{model: Comment}]
-      }
-    );
-  
-    res.status(200).json(blogData);
-  } catch (err) {
-    res.status(500).json(err)
-  }
-  
-  });
 module.exports = router;

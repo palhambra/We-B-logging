@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog } = require('../models');
+const { Blog, Comment } = require('../models');
 // const withAuth = require('../utils/auth');
 
 // Blogs for homepage
@@ -23,7 +23,9 @@ try {
 // Individual blogs
 router.get('/blog/:id', async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id);
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [{model: Comment}]
+    });
     if(!blogData) {
       res.status(404).json({ message: 'No blog found' });
       return;
