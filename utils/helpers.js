@@ -1,10 +1,8 @@
-const withAuth = (req, res, next) => {
-  // If not logged in, redirect to login page
-  if(!req.session.logged_in) {
-    res.redirect('/login');
-  } else {
-    next();
-  }
-}
-
-module.exports = withAuth;
+module.exports = {
+  
+  format_date: (date) => {
+    
+    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/
+    ${new Date(date).getFullYear()} ${date.toLocaleTimeString()}`;
+  },
+};

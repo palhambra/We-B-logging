@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Blog } = require('../models');
 // const withAuth = require('../utils/auth');
 
+// Blogs for homepage
 router.get('/', async (req, res) => {
 try {
   const blogData = await Blog.findAll();
@@ -19,14 +20,43 @@ try {
 
 });
 
+// Login page
 router.get('/login', (req, res) => {
  
   if (req.session.logged_in) {
-    res.redirect('/upload');
+    res.redirect('/dashboard');
     return;
   }
 
   res.render('login');
+});
+
+// Dashboard page
+router.get('/dashboard', async (req, res) => {
+  console.log(req.session)
+  if (!req.session.logged_in) {
+    res.render('login');
+    return;
+  }
+  if (req.session.logged_in) {
+  try {
+    const blogData = await Blog.findAll({
+      where: {
+        username: req.session.username
+      }
+    });
+  
+    const blogs = blogData.map((blog) => blog.get({ plain:true }));
+  console.log(blogs)
+    res.render('dashboard', {
+      blogs,
+      loggedIn: req.session.logged_in,
+      username: req.session.username
+    });
+  }catch (err) {
+    res.status(500).json(err)
+  }
+}
 });
 
 module.exports = router;
