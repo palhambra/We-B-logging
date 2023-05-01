@@ -20,6 +20,24 @@ try {
 
 });
 
+// Individual blogs
+router.get('/blog/:id', async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id);
+    if(!blogData) {
+      res.status(404).json({ message: 'No blog found' });
+      return;
+    }
+    const blogs = blogData.get({ plain:true });
+    res.render('blog', { 
+      blogs,
+    loggedIn: req.session.logged_in,
+    username: req.session.username });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 // Login page
 router.get('/login', (req, res) => {
  
