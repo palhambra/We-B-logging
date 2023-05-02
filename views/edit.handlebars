@@ -1,0 +1,10 @@
+<form class='edit' style="margin-bottom: 50px;" action="/api/blogs/{{blog.id}}">
+  <label>Title:</label>
+  <input style="width:100%;" type="text" name="title" id="title" required>
+
+  <label>Content:</label>
+  <textarea class="form-input" rows="4" style="width:100%" name="content" id="content" required></textarea>
+  <button style="margin:15px; float:right;" type="submit" data-blog="{{blog.id}}">Edit Blog</button>
+</form>
+
+<script src="/js/editBlog.js"></script>

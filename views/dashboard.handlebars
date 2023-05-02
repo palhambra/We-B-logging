@@ -11,26 +11,46 @@
 
 {{#if blogs.length}}
 <div class="blog-list">
-  <h3>Your Blogs:</h3>
-  {{#each blogs as |blog| }}
+  <h3 class="text-center">Your Blogs:</h3>
+  {{!-- {{#each blogs as |blog| }}
 
-  <div class="row align-center mb-5">
-    <div class="col-md-12">
+  <div class="row align-center mb-5 ">
+    <div class="col-md-8 blog-card">
       <a href="/blog/{{id}}">
         <h2>{{title}}</h2>
       </a>
-      <p>By: {{username}} on {{format_date date_created}}</p>
-      <p>{{content}}</p>
+      
+      <a href="/edit/{{blog.id}}" class="edit-btn" data-blog="{{blog.id}}">Edit</a>
+
       <button type="submit" class="delete-btn" data-id="{{blog.id}}">Delete</button>
     </div>
   </div>
 
-  {{/each}}
+  {{/each}} --}}
+{{#each blogs as |blog| }}
+<div class="blog-card col-sm-8 mx-auto p-0">
+<div class="card text-center">
+  <div class="header card-header" style="background-color: #04374d; color: #fdf6f4;">
+    By: {{username}} on {{format_date date_created}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{content}}</p>
+    <a href="/blog/{{id}}" class="btn btn-primary">See blog post</a>
+  </div>
+  <a href="/edit/{{blog.id}}" class="edit-btn" data-blog="{{blog.id}}">Edit</a>
 
+      <button type="submit" class="delete-btn" data-id="{{blog.id}}">Delete</button>
+</div>
+</div>
+{{/each}}
   
 </div>
 {{else}}
 <p>You have not created any blogs yet.</p>
 {{/if}}
 
+
+
 <script src="/js/deleteBlog.js"></script>
+<script src="/js/editBlog.js"></script>

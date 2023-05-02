@@ -53,6 +53,7 @@ router.get('/login', (req, res) => {
 
 // Dashboard page
 router.get('/dashboard', async (req, res) => {
+  
   console.log(req.session)
   if (!req.session.logged_in) {
     res.render('login');
@@ -80,4 +81,22 @@ router.get('/dashboard', async (req, res) => {
 }
 });
 
+router.get('/edit/:id', async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [{model: Comment}]
+    });
+    if(!blogData) {
+      res.status(404).json({ message: 'No blog found' });
+      return;
+    }
+    const blogs = blogData.get({ plain:true });
+    res.render('edit', { 
+      blogs,
+    loggedIn: req.session.logged_in,
+    username: req.session.username });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 module.exports = router;

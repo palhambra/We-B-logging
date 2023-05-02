@@ -1,0 +1,50 @@
+.gallery{
+  background-color: #04374d;
+}
+
+html, body {
+  background-color: #04374d;
+}
+header {
+  height: 60px;
+  width: 100%;
+  line-height: 60px;
+  color: #2493C1;  
+  background-color: black;
+  height: 90px;
+  
+  }
+
+  nav {
+    font-size: large;
+    
+    background-color:black;
+    text-decoration: none;
+  }
+  nav a {
+    color: #2493C1;
+  }
+.blog-card{
+  border: 5px solid #040308;
+  margin: 5px;
+ 
+}
+.card-body {
+  background-color: #04374d;
+  color: #fdf6f4;
+  
+
+}
+
+
+
+.header{
+  background-color: #2493C1
+}
+
+h2,
+h3,
+label,
+.comments {
+  color: white;
+}

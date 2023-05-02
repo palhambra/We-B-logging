@@ -1,11 +1,26 @@
-<section class="card">
+{{!-- <section class="card">
   <header>
     <h1 class="row">{{blogs.title}}</h5>
   </header>
   <p class="content">{{blogs.content}}
   <p>
   <p class="by">Posted by {{blogs.username}} on {{format_date blogs.date_created}}</p>
-</section>
+</section> --}}
+
+
+<div class="blog-card col-sm-8 mx-auto p-0">
+<div class="card text-center">
+  <div class="header card-header" style="background-color: #04374d; color: #fdf6f4;">
+    By: {{blogs.username}} on {{format_date blogs.date_created}}
+  </div>
+  <div class="card-body">
+    <h1 class="text-center">{{blogs.title}}</h1>
+    <p class="card-text">{{blogs.content}}</p>
+    
+  </div>
+
+</div>
+</div>
 
 
 {{#if blogs.comments.length}}
@@ -16,7 +31,8 @@
     <p class="content">{{comments.content}}</p>
 
     <p class="by">Posted by {{comments.username}} on {{format_date comments.date_created}}</p>
-    <button type="submit" class="delete-btn" data-id="{{comments.id}}">Delete</button>
+        <button type="submit" class="delete-btn" data-id="{{comments.id}}">Delete</button>
+    
     </div>
   {{/each}}
 </div>
