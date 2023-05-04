@@ -34,7 +34,7 @@ Please have node.js installed onto your machine
 - Run "node seeds/seeds.js" to seed the database, then "node server.js" in the CLI to start the application
 
 
-
+![](./public/assets/Screenshot%202023-05-03%20192202.png)
 
 
 ## License
